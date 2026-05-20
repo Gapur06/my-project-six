@@ -5,7 +5,10 @@ type PrivateRouteProps = {
   isAuthorized: boolean;
 };
 
-function PrivateRoute({ children, isAuthorized }: PrivateRouteProps): JSX.Element {
+function PrivateRoute({
+  children,
+  isAuthorized,
+}: PrivateRouteProps): JSX.Element {
   return isAuthorized ? children : <Navigate to="/login" />;
 }
 
