@@ -4,8 +4,8 @@ import { Offer } from '../../types/offer';
 
 type OfferCardProps = {
   offer: Offer;
-  onMouseEnter: () => void;
-  onMouseLeave: () => void;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
 };
 
 function OfferCard({

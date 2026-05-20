@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import MainPage from '../main-page/main-page';
 import LoginPage from '../../pages/login-page/login-page';
@@ -6,22 +7,18 @@ import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import OfferPage from '../../pages/offer-page/offer-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
-import { Offer } from '../../types/offer';
+import { State } from '../../store';
 
-type AppProps = {
-  offersCount: number;
-  offers: Offer[];
-};
-
-function App({ offersCount, offers }: AppProps): JSX.Element {
+function App(): JSX.Element {
   const isAuthorized = false;
+  const offers = useSelector((state: State) => state.offers);
 
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path="/"
-          element={<MainPage offersCount={offersCount} offers={offers} />}
+          element={<MainPage />}
         />
 
         <Route path="/login" element={<LoginPage />} />
