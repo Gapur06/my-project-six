@@ -1,3 +1,9 @@
+export type Location = {
+  latitude: number;
+  longitude: number;
+  zoom: number;
+};
+
 export type Offer = {
   id: string;
   title: string;
@@ -7,4 +13,5 @@ export type Offer = {
   previewImage: string;
   isPremium: boolean;
   rating: number;
+  location: Location;
 };

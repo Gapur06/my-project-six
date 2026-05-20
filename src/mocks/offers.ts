@@ -10,6 +10,11 @@ export const offers: Offer[] = [
     previewImage: 'img/apartment-01.jpg',
     isPremium: true,
     rating: 4.8,
+    location: {
+      latitude: 52.3909553943508,
+      longitude: 4.85309666406198,
+      zoom: 10,
+    },
   },
   {
     id: '2',
@@ -20,6 +25,11 @@ export const offers: Offer[] = [
     previewImage: 'img/room.jpg',
     isPremium: false,
     rating: 4.2,
+    location: {
+      latitude: 52.3609553943508,
+      longitude: 4.85309666406198,
+      zoom: 10,
+    },
   },
   {
     id: '3',
@@ -30,6 +40,11 @@ export const offers: Offer[] = [
     previewImage: 'img/apartment-02.jpg',
     isPremium: true,
     rating: 4.5,
+    location: {
+      latitude: 52.3909553943508,
+      longitude: 4.929309666406198,
+      zoom: 10,
+    },
   },
   {
     id: '4',
@@ -40,5 +55,10 @@ export const offers: Offer[] = [
     previewImage: 'img/apartment-03.jpg',
     isPremium: false,
     rating: 4.0,
+    location: {
+      latitude: 52.3809553943508,
+      longitude: 4.939309666406198,
+      zoom: 10,
+    },
   },
 ];
