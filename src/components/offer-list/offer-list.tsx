@@ -8,7 +8,7 @@ type OfferListProps = {
 };
 
 function OfferList({ offers }: OfferListProps): JSX.Element {
-  const [activeOfferId, setActiveOfferId] = useState<string | null>(null);
+  const [, setActiveOfferId] = useState<string | null>(null);
 
   return (
     <div className="cities__places-list places__list tabs__content">
@@ -20,8 +20,6 @@ function OfferList({ offers }: OfferListProps): JSX.Element {
           onMouseLeave={() => setActiveOfferId(null)}
         />
       ))}
-
-      <p>Active offer: {activeOfferId}</p>
     </div>
   );
 }

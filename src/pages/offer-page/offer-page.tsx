@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
-
 import { Offer } from '../../types/offer';
 import ReviewForm from '../../components/review-form/review-form';
+
 type OfferPageProps = {
   offers: Offer[];
 };
