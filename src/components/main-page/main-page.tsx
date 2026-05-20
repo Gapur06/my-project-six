@@ -31,27 +31,41 @@ function MainPage(): JSX.Element {
     }
   });
   return (
-    <main>
-      <SortOptions />
+    <main className="page__main page__main--index">
+      <h1 className="visually-hidden">Cities</h1>
+
       <CitiesList />
 
-      <h1>{cityOffers.length} places to stay in {city}</h1>
+      <div className="cities">
+        <div className="cities__places-container container">
+          <section className="cities__places places">
+            <h2 className="visually-hidden">Places</h2>
 
-      <OfferList
-        offers={sortedOffers}
-        onCardHover={setActiveOfferId}
-      />
+            <b className="places__found">
+              {sortedOffers.length} places to stay in {city}
+            </b>
 
-      {sortedOffers.length > 0 && (
-        <Map
-          city={sortedOffers[0].location}
-          offers={sortedOffers}
-          selectedOfferId={activeOfferId}
-          className="cities__map"
-        />
-      )}
+            <SortOptions />
+
+            <OfferList
+              offers={sortedOffers}
+              onCardHover={setActiveOfferId}
+            />
+          </section>
+
+          <div className="cities__right-section">
+            {sortedOffers.length > 0 && (
+              <Map
+                city={sortedOffers[0].location}
+                offers={sortedOffers}
+                selectedOfferId={activeOfferId}
+                className="cities__map"
+              />
+            )}
+          </div>
+        </div>
+      </div>
     </main>
   );
 }
-
 export default MainPage;
