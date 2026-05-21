@@ -1,26 +1,40 @@
-import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Navigate, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { Offer } from '../../types/offer';
 import ReviewForm from '../../components/review-form/review-form';
 import ReviewList from '../../components/review-list/review-list';
 import Map from '../../components/map/map';
 import OfferList from '../../components/offer-list/offer-list';
-import { reviews } from '../../mocks/reviews';
+import { AppDispatch, State } from '../../store';
+import { fetchOfferAction } from '../../store/api-actions';
+import { AuthorizationStatus } from '../../const';
 
-type OfferPageProps = {
-  offers: Offer[];
-};
 
-function OfferPage({ offers }: OfferPageProps): JSX.Element {
+function OfferPage(): JSX.Element {
   const { id } = useParams();
+  const dispatch = useDispatch<AppDispatch>();
 
-  const currentOffer = offers.find((offer) => offer.id === id);
+  const currentOffer = useSelector((state: State) => state.currentOffer);
+  const nearbyOffers = useSelector((state: State) => state.nearbyOffers);
+  const reviews = useSelector((state: State) => state.reviews);
+  const isOfferNotFound = useSelector((state: State) => state.isOfferNotFound);
+  const authorizationStatus = useSelector(
+    (state: State) => state.authorizationStatus
+  );
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchOfferAction(id));
+    }
+  }, [dispatch, id]);
 
-  if (!currentOffer) {
-    return <h1>Offer not found</h1>;
+  if (!id || isOfferNotFound) {
+    return <Navigate to="/404" />;
   }
 
-  const nearbyOffers = offers.slice(0, 3);
+  if (!currentOffer) {
+    return <h1>Loading offer...</h1>;
+  }
 
   return (
     <main>
@@ -29,8 +43,8 @@ function OfferPage({ offers }: OfferPageProps): JSX.Element {
       <p>Type: {currentOffer.type}</p>
 
       <ReviewList reviews={reviews} />
-      <ReviewForm />
 
+      {authorizationStatus === AuthorizationStatus.Auth && <ReviewForm />}
       <Map
         city={currentOffer.location}
         offers={nearbyOffers}

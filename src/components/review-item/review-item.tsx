@@ -19,7 +19,7 @@ function ReviewItem({ review }: ReviewItemProps): JSX.Element {
         </div>
 
         <span className="reviews__user-name">
-          {review.user}
+          {review.user.name}
         </span>
       </div>
 

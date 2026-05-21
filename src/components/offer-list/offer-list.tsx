@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import OfferCard from '../offer-card/offer-card';
 import { Offer } from '../../types/offer';
 
@@ -21,4 +22,6 @@ function OfferList({ offers, onCardHover }: OfferListProps): JSX.Element {
   );
 }
 
-export default OfferList;
+const MemoizedOfferList = memo(OfferList);
+
+export default MemoizedOfferList;

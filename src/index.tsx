@@ -4,8 +4,12 @@ import { Provider } from 'react-redux';
 
 import App from './components/app/app';
 import { store } from './store';
+import { fetchOffersAction, checkAuthAction } from './store/api-actions';
 
 import 'leaflet/dist/leaflet.css';
+
+store.dispatch(fetchOffersAction());
+store.dispatch(checkAuthAction());
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
